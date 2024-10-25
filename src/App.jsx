@@ -9,6 +9,7 @@ const defaultTodos = [
 	{ text: 'Cortar cebolla', completed: false },
 	{ text: 'Cortar tomate', completed: true },
 	{ text: 'Cortar zanahoria', completed: false },
+	{ text: 'Cortar papa', completed: true },
 ];
 function App() {
 	return (
