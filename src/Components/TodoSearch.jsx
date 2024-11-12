@@ -1,14 +1,16 @@
-function TodoSearch() {
+function TodoSearch({ searchValue, setSearchValue }) {
 	const search = e => {
-		let letters = e.target.value;
+		const value = e.target.value;
 
-		console.log(letters);
+		setSearchValue(value);
+		console.log(value); // for testing purposes only, remove in production code!
 	};
 
 	return (
 		<div>
 			<input
 				onChange={search}
+				value={searchValue}
 				className="border-solid border-2"
 				placeholder="Cortar Cebolla"
 			/>
