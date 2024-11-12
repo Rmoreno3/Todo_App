@@ -1,37 +1,23 @@
+// Hooks
 import { useState } from 'react';
+import { useLocalStorage } from '../hooks/useLocalStorage';
+
+// Components
 import { TodoCounter } from './Components/TodoCounter';
 import { TodoSearch } from './Components/TodoSearch';
 import { TodoList } from './Components/TodoList';
 import { TodoItem } from './Components/TodoItem';
 import { CreateTodoButton } from './Components/CreateTodoButton';
+
+// Styles
 import './App.css';
 
-const exampleTodos = [
-	{ text: 'Cortar cebolla', completed: false },
-	{ text: 'Cortar tomate', completed: true },
-];
 function App() {
-	const localeStorageTodos = JSON.parse(localStorage.getItem('TODOS_V1'));
-
-	let parsedTodos;
-	if (!localeStorageTodos) {
-		localStorage.setItem('TODOS_V1', JSON.stringify([]));
-		parsedTodos = [];
-	} else {
-		parsedTodos = localeStorageTodos;
-	}
-
-	const [todos, setTodos] = useState(parsedTodos);
+	const [todos, savedTodos] = useLocalStorage('TODOS_V1', []);
 	const [searchValue, setSearchValue] = useState('');
 
 	const completedTodos = todos.filter(todo => !!todo.completed).length;
 	const totalTodos = todos.length;
-
-	// Actualizamos el localStorage y actualizamos el state
-	const savedTodos = newTodos => {
-		localStorage.setItem('TODOS_V1', JSON.stringify(newTodos));
-		setTodos(newTodos);
-	};
 
 	const completeTodo = text => {
 		const newTodos = [...todos];
